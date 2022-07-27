@@ -1,5 +1,5 @@
-import { useState,useEffect} from 'react';
-import { Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useState} from 'react';
+import {  Keyboard, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import TaskSection from './components/TaskSection';
 
 
@@ -9,6 +9,7 @@ export default function App() {
   } 
   const [item, setItem] = useState('')
   const [toDo,setToDo] = useState([])
+  
 
   const handleAddTask = ()=>{
     if(item!=''){
@@ -30,10 +31,11 @@ export default function App() {
     copyToDo[i] ={...copyToDo[i],isComplete: !item.isComplete}
     setToDo(copyToDo)
   }
+
   return (
     <View style={styles.container}>
       
-      <View>
+      <ScrollView>
       <TaskSection 
         title = {"Today's Tasks"}
         taskArray ={toDo}
@@ -46,7 +48,7 @@ export default function App() {
         taskFunction = {toggleStatus}
         status = {true}
       />
-      </View>
+      </ScrollView>
 
       <KeyboardAvoidingView style={styles.taskInputWrapper}>
         <TextInput 
