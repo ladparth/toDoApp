@@ -9,7 +9,11 @@ export default function App() {
   } 
   const [item, setItem] = useState('')
   const [toDo,setToDo] = useState([])
-  
+  const [isExpanded,setIsExpanded] = useState(true)
+
+  const toggleIsExpanded =()=>{
+    setIsExpanded(!isExpanded)
+  }
 
   const handleAddTask = ()=>{
     if(item!=''){
@@ -41,12 +45,16 @@ export default function App() {
         taskArray ={toDo}
         taskFunction = {toggleStatus}
         status = {false}
+        expanded={isExpanded}
+        fnToggle={toggleIsExpanded}
       />
       <TaskSection 
         title = {"Completed Tasks"}
         taskArray ={toDo}
         taskFunction = {toggleStatus}
         status = {true}
+        expanded={!isExpanded}
+        fnToggle={toggleIsExpanded}
       />
       </ScrollView>
 
